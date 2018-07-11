@@ -6,17 +6,20 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*　margeにつき除去
     private NoguchiClass nc; //noguchiClassのインスタンス
-    private TextView tv;
-
+    private TextView tv;    
+    */
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        /*margeにつき除去
         nc = new NoguchiClass();//noguchiClassのインスタンス生成
         tv = findViewById(R.id.text_view);
         String str = nc.onTokenRefresh();
         tv.setText(str);
+        */
     }
 }
