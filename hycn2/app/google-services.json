@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1006109001662",
+    "firebase_url": "https://huck-u-gifu-2018-hycn2.firebaseio.com",
+    "project_id": "huck-u-gifu-2018-hycn2",
+    "storage_bucket": "huck-u-gifu-2018-hycn2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006109001662:android:093f14c4b434e0bd",
+        "android_client_info": {
+          "package_name": "com.example.daisuke.hycn2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006109001662-u1sa8sfjm89s0fvh5bv6se9op16bpach.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.daisuke.hycn2",
+            "certificate_hash": "edfc71cde828fb44a19ea6b321cb786d88eeff4e"
+          }
+        },
+        {
+          "client_id": "1006109001662-1s7ujvtrnlh8shjnjdhu4043tdlfnkge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhwR_YNYcmpwhgwaX-0MULgs3CUnVBZy4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006109001662-1s7ujvtrnlh8shjnjdhu4043tdlfnkge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
