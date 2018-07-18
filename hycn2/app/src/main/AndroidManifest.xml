@@ -26,7 +26,12 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".Main3Activity"></activity>
 
-
+        <activity
+            android:name=".CaptureActivityAnyOrientation"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
     </application>
 
