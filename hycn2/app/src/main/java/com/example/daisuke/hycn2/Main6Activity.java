@@ -72,6 +72,11 @@ public class Main6Activity extends AppCompatActivity {
             //スピナー情報保存
             saveFile2("testfile2.txt",sp01,sp02,sp03,sp04,sp05);
 
+            // コメント情報保存
+            //saveFile("Kimotocomment.txt",temp1,temp2,temp3,temp4,temp5);
+            //スピナー情報保存
+            //saveFile2("Kimotospinner.txt",sp01,sp02,sp03,sp04,sp05);
+
             Intent intent = new Intent(this, Main5Activity.class);
             startActivityForResult(intent, 0);
         }
