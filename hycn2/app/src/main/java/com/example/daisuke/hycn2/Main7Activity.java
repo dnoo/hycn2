@@ -9,10 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Main7Activity extends AppCompatActivity {
 
@@ -39,10 +44,30 @@ public class Main7Activity extends AppCompatActivity {
     private TextView tv24;
     private TextView tv25;
 
+    //グローバル変数
+    globalsClass globals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //グローバル変数を取得
+        globals = (globalsClass) this.getApplication();
+
+        if(!globals.mapFriendsProfile.isEmpty()){
+              Log.d("mapFriendsProfile",globals.mapMyProfile.toString());
+            //mapの確認
+            for (Map.Entry<String , String> myProfileMap : globals.mapFriendsProfile.entrySet()) {
+                       Log.d("mapFriendsProfile",myProfileMap.getKey()+":"+myProfileMap.getValue());
+            }
+               Log.d("checkUserID",globals.getMyFriendID());
+        }else {
+               Log.d("mapFriendsProfile", "Error matMyProfile is Empty");
+            // Go to MainActivity
+            startActivity(new Intent(Main7Activity.this, Main5Activity.class));
+            finish();
+            return ;
+        }
+
         setContentView(R.layout.activity_main7);
 
         //ファイル読み込み部分
@@ -76,12 +101,58 @@ public class Main7Activity extends AppCompatActivity {
         tv24 = findViewById(R.id.main72tv4);
         tv25 = findViewById(R.id.main72tv5);
 
+        tv1.setText(globals.mapFriendsProfile.get("name"));
+        tv2.setText(globals.mapFriendsProfile.get("number"));
+        tv3.setText(globals.mapFriendsProfile.get("faculty"));
+        tv4.setText(globals.mapFriendsProfile.get("circle"));
+        tv5.setText(globals.mapFriendsProfile.get("birth"));
+        tv6.setText(globals.mapFriendsProfile.get("age"));
+        tv7.setText(globals.mapFriendsProfile.get("comment"));
+
+        //趣味取り出し
+        try{
+            JSONObject JSONHobby = new JSONObject(globals.mapFriendsProfile.get("hobby").toString());
+            // Log.d("JSONHobby",JSONHobby.toString(2));
+            Iterator<String> keys = JSONHobby.keys();
+            int count = 0;
+            while(keys.hasNext()){
+                String key = keys.next();
+                String value = JSONHobby.getString(key);
+                //    Log.d("Main5Activity", "キー名 = " + key + "   :   値 = " + value);
+                switch(count){
+                    case 0:
+                        tv11.setText(key);
+                        tv21.setText(value);
+                        break;
+                    case 1:
+                        tv12.setText(key);
+                        tv22.setText(value);
+                        break;
+                    case 2:
+                        tv13.setText(key);
+                        tv23.setText(value);
+                        break;
+                    case 3:
+                        tv14.setText(key);
+                        tv24.setText(value);
+                        break;
+                    case 4:
+                        tv15.setText(key);
+                        tv25.setText(value);
+                        break;
+                    default :
+                        break;
+                }
+                count++;
+            }
+        } catch (JSONException e){
+
+        }
 
 
 
 
-
-
+        /*
         //ファイル初期読み込み
         String[] temp = readFile(basicfile);
         String[] temp2 = readFile2(spinnerfile);//スピナー情報
@@ -108,7 +179,8 @@ public class Main7Activity extends AppCompatActivity {
         Log.d(mytemp2[2], "number:13 ");
         Log.d(mytemp2[3], "number:14 ");
         Log.d(mytemp2[4], "number:15 ");
-
+        */
+        /*
         //ここからマッチング実装
         if(temp2 != null) {
             if(temp2[0].equals(mytemp2[0]) || temp2[0].equals(mytemp2[1]) ||temp2[0].equals(mytemp2[2]) ||temp2[0].equals(mytemp2[3])
@@ -179,7 +251,7 @@ public class Main7Activity extends AppCompatActivity {
             }
         }
         //ファイル初期読み込み
-
+        */
 
 
 

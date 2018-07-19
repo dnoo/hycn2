@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -21,12 +22,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main2Activity extends AppCompatActivity {
 
 
     private Main2Activity inner_delegate = this;
+    //グローバル変数
+    globalsClass globals;
+
     //private TextView tv1;
 
     //試し
@@ -39,7 +45,8 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main2);//ビューを配置
-
+        //グローバル変数を取得
+        globals = (globalsClass) this.getApplication();
 
         //全体
         LinearLayout layout = new LinearLayout(this);
@@ -155,7 +162,38 @@ public class Main2Activity extends AppCompatActivity {
 
 
         ////////////////
+        globals.mapMyFriends.size();
+        Button fbutton[] = new Button[globals.mapMyFriends.size()];
+        int i=0;
+        //大事なスクロールのやつ
+        for (Map.Entry<String , String> myFriendsMap : globals.mapMyFriends.entrySet()) {
+                   Log.d("map","(key)"+myFriendsMap.getKey()+"(Value)"+myFriendsMap.getValue());
 
+            fbutton[i] = new Button(this);
+            fbutton[i].setText(myFriendsMap.getValue());
+            layout3.addView(fbutton[i]);
+            final String key = myFriendsMap.getKey();
+            final String value = myFriendsMap.getValue();
+
+            fbutton[i].setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view){
+                    //ここに記述
+                    globals.setMyFriendID(key);
+                    //保存
+                    saveFile("target.txt",value);
+
+                    //友達のデータ読み込み
+                    Toast.makeText(Main2Activity.this, value+"さんの情報を読み込んでいます..." ,
+                            Toast.LENGTH_LONG).show();
+                    globals.clearFriendProfile();
+                    globals.getFriendProfile();
+                    //アクテビティ遷移
+                    Intent intent = new Intent(inner_delegate, Main7Activity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }
+        /*
         final List list01 = readFile("flist.txt");
         Button fbutton[] = new Button[list01.size()];
         //大事なスクロールのやつ
@@ -168,6 +206,7 @@ public class Main2Activity extends AppCompatActivity {
             fbutton[i].setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
                     //ここに記述
+
                     //保存
                     saveFile("target.txt",(String)(list01.get(ii)));
 
@@ -176,7 +215,7 @@ public class Main2Activity extends AppCompatActivity {
                 }
             });
         }
-
+    */
         ////////////////
 
 

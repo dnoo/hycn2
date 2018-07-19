@@ -30,12 +30,14 @@ public class globalsClass extends Application{
     private operateDatabase od;//operateDatabaseのインスタンス
     private String str;//文字データ
     private String userID;
+    private String friendID;
 
 
     public FirebaseAuth mAuth;//FirebaseAuthのインスタンス
     public FirebaseUser myuser;//user情報
     public Map<String, String> mapMyProfile = new LinkedHashMap<String, String>();//userのプロフィール
     public Map<String, String> mapMyFriends = new LinkedHashMap<String, String>();//userの友達リスト
+    public Map<String, String> mapFriendsProfile = new LinkedHashMap<String, String>();//userのプロフィール
     public Boolean IsDataRead;
 
 
@@ -46,6 +48,53 @@ public class globalsClass extends Application{
         if(userID==null)
             userID = str;
         return userID;
+    }
+
+    //選択した友達のユーザーIDを保管
+    public void setMyFriendID(String friendUserID){
+        friendID=friendUserID;
+    }
+    //選択した友達のユーザーIDを返す
+    public String getMyFriendID(){
+        return friendID;
+    }
+
+    public void clearFriendProfile(){
+        mapFriendsProfile.clear();
+    }
+
+    //フレンドのプロフィール情報を取得する
+    public void getFriendProfile(){
+        if(friendID!=null){
+            DatabaseReference userDataRef = FirebaseDatabase.getInstance().getReference("user-data").child( friendID );
+             Log.d("user-data:friendID:", "path::"+userDataRef.toString() );
+            userDataRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //HashMapクラスのオブジェクトを生成
+                    Map<String, String> mapFriendData = new LinkedHashMap<String, String>();
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                               //Log.d("instance","(Key)"+data.getKey().toString()+":(Value)"+data.getValue().toString());
+                        mapFriendData.put(data.getKey(),data.getValue().toString());
+                    }
+
+                    //mapの確認
+                  //  for (Map.Entry<String , String> myDataMap : mapFriendData.entrySet()) {
+                               //Log.d("map","(key)"+myDataMap.getKey()+"(Value)"+myDataMap.getValue());
+                  //  }
+                    mapFriendsProfile = mapFriendData;//グローバル変数に代入
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }else{
+            Log.d("getFriendProfile","Error"+"friendID is null!" );
+        }
     }
 
     //メソッド
