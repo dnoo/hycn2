@@ -71,6 +71,7 @@
             android:text="comment" />
     </LinearLayout>
 
+    //
     <TextView
         android:id="@+id/mytext1"
         android:layout_width="153dp"
@@ -119,6 +120,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    //
     <Button
         android:id="@+id/buttonrn"
         android:layout_width="wrap_content"
@@ -196,9 +198,26 @@
         <TextView
             android:id="@+id/maintv7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
             android:layout_marginBottom="20dp"
             android:text="blank" />
     </LinearLayout>
+
+    //
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Hobby"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonrn"
+        app:layout_constraintVertical_bias="0.005" />
 
 </android.support.constraint.ConstraintLayout>

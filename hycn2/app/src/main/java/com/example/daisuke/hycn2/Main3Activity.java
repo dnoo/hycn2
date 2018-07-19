@@ -16,7 +16,7 @@ public class Main3Activity extends AppCompatActivity {
     public void changescreen00(View view) {
         //TextView tv = findViewById(R.id.mytext1);
         //tv.setText("Changed!");
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Main5Activity.class);
         startActivityForResult(intent, 0);
     }
 

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">hycn2</string>
+
+    <string-array name="mylist">
+        <item>Music</item>
+        <item>Sport</item>
+        <item>Movie</item>
+        <item>Youtube</item>
+        <item>Food</item>
+        <item>Cooking</item>
+        <item>Game</item>
+        <item>PC</item>
+        <item>Dance</item>
+        <item>Fashion</item>
+    </string-array>
 </resources>
