@@ -53,14 +53,17 @@ public class MainActivity extends AppCompatActivity {
         //ここまで追加
         od = new operateDatabase();//operateDatabaseのインスタンス生成
         od.testWriteMas2Database();
-        tv = findViewById(R.id.textView3);
-        od.testReadMesFromDatabase(tv);
+        //DBのtest用だったもの
+        //tv = findViewById(R.id.textView3);
+        //od.testReadMesFromDatabase(tv);
 
     }
 
 
 
 
+
+    //画面4への遷移
     public void changescreen01(View view) {
         //TextView tv = findViewById(R.id.mytext1);
         //tv.setText("Changed!");
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 0);
     }
 
+    //画面3への遷移
     public void changescreen02(View view) {
         //TextView tv = findViewById(R.id.mytext1);
         //tv.setText("Changed!");
@@ -151,17 +155,109 @@ public class MainActivity extends AppCompatActivity {
 
 ////////original codes////////
 /*
-public class MainActivity extends AppCompatActivity {
+///////////////
+/////////
+////ここから下はメモ
+//////////////
+////////
+////
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+    1
+    //ファイルの保存(original)
+    public void saveFile(String file, String str) {
+        try(FileOutputStream fileOutputstream = openFileOutput(file,
+                Context.MODE_PRIVATE);) {
+
+            fileOutputstream.write(str.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void changelabel(View view) {
-        TextView tv = findViewById(R.id.mytext1);
-        tv.setText("Changed!");
+
+    2
+    // ファイルを読み出し(original)
+    public String readFile(String file){
+        String text = null;
+
+        try(FileInputStream fileInputStream = openFileInput(file);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(fileInputStream,"UTF-8"));
+            ) {
+
+            String lineBuffer;
+            while ((lineBuffer = reader.readLine()) != null) {
+                text = lineBuffer;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return text;
     }
-}*/
-///////////////////////////////
+
+
+    3
+    //OnClick登録
+    public void testclick(View view) {
+        String temp = et01.getText().toString();
+        ev01.setText(temp);
+    }
+
+
+    4
+    //定義(class MainActivityとonCreateの間)
+    private EditText et01;
+    private TextView ev01;
+
+
+    5
+    //紐付け(onCreateの直後)
+    et01 =findViewById(R.id.my02);
+    ev01 = findViewById(R.id.my01);
+    Button Bt01 = findViewById(R.id.my03);
+
+
+    6
+    //ファイル初期読み込み1(onCreate内)
+    String temp3 = readFile("testfile.txt");
+    if(temp3 != null) {
+        ev01.setText(temp3);
+    }
+    //ファイル読み込み1
+
+
+    7
+    //アクション登録
+    Bt01.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            //保存箇所
+            String temp = et01.getText().toString();
+            saveFile("testfile.txt",temp);
+
+            //読み込み箇所
+            String temp2 = readFile("testfile.txt");
+            if(temp2 != null) {
+                ev01.setText(temp2);
+            } else {
+                ev01.setText("error");
+            }
+
+        }
+    });
+
+
+
+
+///////////////
+/////////
+////ここから上はメモ
+//////////////
+////////
+////
+*/
+
+
+
+
