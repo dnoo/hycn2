@@ -64,7 +64,12 @@ public class Main3Activity extends AppCompatActivity {
     public void changescreen02(View view) {
         //TextView tv = findViewById(R.id.mytext1);
         //tv.setText("Changed!");
+        Toast.makeText(this, "カメラを起動しています……", Toast.LENGTH_SHORT).show();
         IntentIntegrator integrator =  new IntentIntegrator(Main3Activity.this);
+        integrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
+        // キャプチャ画面の下方にメッセージを表示
+        integrator.setPrompt("Scan a QRcode");
+        integrator.setOrientationLocked(false);
         integrator.initiateScan();
     }
 
