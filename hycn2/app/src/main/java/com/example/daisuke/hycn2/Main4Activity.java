@@ -61,6 +61,9 @@ public class Main4Activity extends AppCompatActivity {
             //保存
             saveFile("testfile.txt",temp1,temp2,temp3,temp4,temp5,temp6,temp7);
 
+            //saveFile("Kimotobasic.txt",temp1,temp2,temp3,temp4,temp5,temp6,temp7);
+            //saveFile3("flist.txt",temp1,temp2,temp3,temp4,temp5);
+
             Intent intent = new Intent(this, Main5Activity.class);
             startActivityForResult(intent, 0);
         }
@@ -85,6 +88,25 @@ public class Main4Activity extends AppCompatActivity {
             fileOutputstream.write(str6.getBytes());
             fileOutputstream.write(13);
             fileOutputstream.write(str7.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ファイルを保存
+    public void saveFile3(String file, String str1, String str2, String str3
+            , String str4, String str5) {
+        try(FileOutputStream fileOutputstream = openFileOutput(file,
+                Context.MODE_PRIVATE);) {
+            fileOutputstream.write(str1.getBytes());
+            fileOutputstream.write(13);
+            fileOutputstream.write(str2.getBytes());
+            fileOutputstream.write(13);
+            fileOutputstream.write(str3.getBytes());
+            fileOutputstream.write(13);
+            fileOutputstream.write(str4.getBytes());
+            fileOutputstream.write(13);
+            fileOutputstream.write(str5.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }

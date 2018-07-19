@@ -5,55 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Main5Activity">
+    tools:context=".Main7Activity">
+
 
 
 
     //タイトル
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/header"
+        android:layout_marginBottom="50dp">
         <TextView
             android:id="@+id/my5text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="個人画面"
+            android:text="友達画面"
             android:textSize="37sp" />
     </LinearLayout>
 
-
-    //上ボタン
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/header">
-
-        <Button
-            android:id="@+id/buttonrn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:onClick="rnclick"
-            android:text="renew" />
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:onClick="hobclick"
-            android:text="Hobby"
-            android:layout_weight="1">
-        </Button>
-    </LinearLayout>
 
 
 
@@ -61,7 +33,7 @@
     //スクロール開始位置
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="430dp"
         android:layout_above="@id/footer"
         android:layout_below="@id/header">
 
@@ -110,7 +82,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView51"
+                        android:id="@+id/textView71"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -118,7 +90,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView52"
+                        android:id="@+id/textView72"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -126,7 +98,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView53"
+                        android:id="@+id/textView73"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -134,7 +106,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView54"
+                        android:id="@+id/textView74"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -142,7 +114,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView55"
+                        android:id="@+id/textView75"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -150,7 +122,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView56"
+                        android:id="@+id/textView76"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -158,7 +130,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView57"
+                        android:id="@+id/textView77"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -180,49 +152,49 @@
 
 
                     <TextView
-                        android:id="@+id/main5tv1"
+                        android:id="@+id/main7tv1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main5tv2"
+                        android:id="@+id/main7tv2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main5tv3"
+                        android:id="@+id/main7tv3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main5tv4"
+                        android:id="@+id/main7tv4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main5tv5"
+                        android:id="@+id/main7tv5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main5tv6"
+                        android:id="@+id/main7tv6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main5tv7"
+                        android:id="@+id/main7tv7"
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
                         android:layout_marginBottom="20dp"
@@ -268,43 +240,43 @@
 
 
                     <TextView
-                        android:id="@+id/textView521"
+                        android:id="@+id/textView721"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="hobby1" />
+                        android:text="blank" />
 
 
                     <TextView
-                        android:id="@+id/textView522"
+                        android:id="@+id/textView722"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="hobby2" />
+                        android:text="blank" />
 
 
                     <TextView
-                        android:id="@+id/textView523"
+                        android:id="@+id/textView723"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="hobby3" />
+                        android:text="blank" />
 
 
                     <TextView
-                        android:id="@+id/textView524"
+                        android:id="@+id/textView724"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="hobby4" />
+                        android:text="blank" />
 
 
                     <TextView
-                        android:id="@+id/textView525"
+                        android:id="@+id/textView725"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="hobby5" />
+                        android:text="blank" />
 
 
                 </LinearLayout>
@@ -322,35 +294,35 @@
 
 
                     <TextView
-                        android:id="@+id/main52tv1"
+                        android:id="@+id/main72tv1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main52tv2"
+                        android:id="@+id/main72tv2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main52tv3"
+                        android:id="@+id/main72tv3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main52tv4"
+                        android:id="@+id/main72tv4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:text="blank" />
 
                     <TextView
-                        android:id="@+id/main52tv5"
+                        android:id="@+id/main72tv5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -380,6 +352,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="28dp"
             android:layout_marginStart="4dp"
+            android:onClick="changescreen00"
             android:text="個人" />
 
         <Button
@@ -402,15 +375,4 @@
             android:onClick="changescreen02"
             android:text="QR" />
     </LinearLayout>
-
 </LinearLayout>
-
-
-
-
-
-
-
-
-
-
