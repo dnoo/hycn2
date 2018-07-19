@@ -4,12 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main6Activity extends AppCompatActivity {
 
@@ -26,10 +32,15 @@ public class Main6Activity extends AppCompatActivity {
     private Spinner sp04;
     private Spinner sp05;
 
+    //グローバル変数
+    globalsClass globals;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main6);
+        //グローバル変数を取得
+        globals = (globalsClass) this.getApplication();
     }
 
 
@@ -71,6 +82,29 @@ public class Main6Activity extends AppCompatActivity {
             saveFile("testfile3.txt",temp1,temp2,temp3,temp4,temp5);
             //スピナー情報保存
             saveFile2("testfile2.txt",sp01,sp02,sp03,sp04,sp05);
+
+            //データベースにアップロード
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            Log.d("getMyUserID",globals.getMyUserID());
+            DatabaseReference myRef = database.getReference().child("user-data").child(globals.getMyUserID()).child("hobby");
+            //  アップロード用のキーとバリュー
+            HashMap<String, Object> childUpdatesHobby = new HashMap<>();
+
+            childUpdatesHobby.put( ((String)sp01.getSelectedItem()), temp1);
+            childUpdatesHobby.put( ((String)sp02.getSelectedItem()), temp2);
+            childUpdatesHobby.put( ((String)sp03.getSelectedItem()), temp3);
+            childUpdatesHobby.put( ((String)sp04.getSelectedItem()), temp4);
+            childUpdatesHobby.put( ((String)sp05.getSelectedItem()), temp5);
+
+
+            for (Map.Entry<String , Object> myProfileMap : childUpdatesHobby.entrySet()) {
+                Log.d("UpdateKeyValue",myProfileMap.getKey()+":"+myProfileMap.getValue());
+            }
+            //データベースの趣味情報削除
+            myRef.removeValue();
+            //アップロード
+            myRef.updateChildren(childUpdatesHobby);
+            childUpdatesHobby.clear();
 
             // コメント情報保存
             //saveFile("Kimotocomment.txt",temp1,temp2,temp3,temp4,temp5);

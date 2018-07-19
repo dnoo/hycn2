@@ -29,7 +29,7 @@ public class globalsClass extends Application{
     //グローバル変数に使用する変数
     private operateDatabase od;//operateDatabaseのインスタンス
     private String str;//文字データ
-
+    private String userID;
 
 
     public FirebaseAuth mAuth;//FirebaseAuthのインスタンス
@@ -40,6 +40,13 @@ public class globalsClass extends Application{
 
 
     //全部初期化するメソッド
+
+    //自分のユーザーIDをかえす．
+    public String getMyUserID(){
+        if(userID==null)
+            userID = str;
+        return userID;
+    }
 
     //メソッド
     public void updateUI(FirebaseUser user){
@@ -56,7 +63,7 @@ public class globalsClass extends Application{
     }
 
     // Read from the database
-    public String ReadUserData (String place , String userID) {
+    public String ReadUserData (String place , final String userID) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(place).child(userID);
         Log.d("ReadPlaceUserID", "path::"+myRef.toString() );
