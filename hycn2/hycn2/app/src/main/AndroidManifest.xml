@@ -36,5 +36,6 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".StartPage"></activity>
     </application>
+    
 
 </manifest>
