@@ -34,19 +34,6 @@ public class operateDatabase {
     public static final String TAG = "operateDatabase";
 
     //追加ここから
-    public class userData{
-        public String age;
-        public String birth;//文字列で日，月，年が入る
-        public String day;
-        public String month;
-        public String year;
-        public String circle;//文字列で<circle名>：trueが入る．複数入る場合もある
-        public String department;
-        public String hobby;//文字列で<ジャンルコード>：<コメント>が入る．複数入る場合もある
-        public String name;
-
-    }
-    userData myData = new userData();
 
     // Write a message to the database
     public void testWriteMas2Database () {
