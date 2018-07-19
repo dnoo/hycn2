@@ -62,6 +62,7 @@ public class Main5Activity extends AppCompatActivity {
             for (Map.Entry<String , String> myProfileMap : globals.mapMyProfile.entrySet()) {
                 Log.d("myProfileMap",myProfileMap.getKey()+":"+myProfileMap.getValue());
             }
+            Log.d("checkUserID",globals.getMyUserID());
         }else {
             Log.d("myProfileMap", "Error matMyProfile is Empty");
             // Go to MainActivity

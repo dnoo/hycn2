@@ -4,11 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main4Activity extends AppCompatActivity {
 
@@ -20,12 +26,15 @@ public class Main4Activity extends AppCompatActivity {
     private EditText et05;
     private EditText et06;
     private EditText et07;
+    //グローバル変数
+    globalsClass globals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
-
+        //グローバル変数を取得
+        globals = (globalsClass) this.getApplication();
     }
 
 
@@ -61,6 +70,26 @@ public class Main4Activity extends AppCompatActivity {
             //保存
             saveFile("testfile.txt",temp1,temp2,temp3,temp4,temp5,temp6,temp7);
 
+            //データベースにアップロード
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference().child("user-data").child(globals.getMyUserID());
+            //  アップロード用のキーとバリュー
+            HashMap<String, Object> childUpdatesBasic = new HashMap<>();
+
+            childUpdatesBasic.put("name", temp1);
+            childUpdatesBasic.put("number", temp2);
+            childUpdatesBasic.put("faculty", temp3);
+            childUpdatesBasic.put("circle", temp4);
+            childUpdatesBasic.put("birth", temp5);
+            childUpdatesBasic.put("age", temp6);
+            childUpdatesBasic.put("comment", temp7);
+
+            for (Map.Entry<String , Object> myProfileMap : childUpdatesBasic.entrySet()) {
+                Log.d("UpdateKeyValue",myProfileMap.getKey()+":"+myProfileMap.getValue());
+            }
+            //アップロード
+            myRef.updateChildren(childUpdatesBasic);
+            childUpdatesBasic.clear();
             //saveFile("Kimotobasic.txt",temp1,temp2,temp3,temp4,temp5,temp6,temp7);
             //saveFile3("flist.txt",temp1,temp2,temp3,temp4,temp5);
 
