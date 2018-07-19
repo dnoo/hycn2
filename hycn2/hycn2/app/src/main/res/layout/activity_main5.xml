@@ -58,7 +58,7 @@
 
 
 
-    //スクロール開始位置(実機370,野口370)
+    //スクロール開始位置(実機370,野口350)
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="350dp"

@@ -72,7 +72,7 @@ public class Main2Activity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
 
         float dp1 = getResources().getDisplayMetrics().density;
-        int dp2 = (int)(410 * dp1);//default:490, 実機:450, 野口:
+        int dp2 = (int)(410 * dp1);//default:490, 実機:450, 野口:410
         scrollView.setLayoutParams(new ScrollView.LayoutParams(
                 ScrollView.LayoutParams.MATCH_PARENT,
                 dp2));
@@ -119,23 +119,9 @@ public class Main2Activity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-
-        /*
         button1param.setMargins((int)(4 * dp1),(int)(0 * dp1),(int)(28 * dp1),(int)(8 * dp1));
         button2param.setMargins((int)(24 * dp1),(int)(0 * dp1),(int)(24 * dp1),(int)(8 * dp1));
         button3param.setMargins((int)(28 * dp1),(int)(0 * dp1),(int)(4 * dp1),(int)(8 * dp1));
-        */
-
-        button1param.setMargins((int)(4 * dp1),(int)(0 * dp1),(int)(24 * dp1),(int)(8 * dp1));
-        button2param.setMargins((int)(24 * dp1),(int)(0 * dp1),(int)(24 * dp1),(int)(8 * dp1));
-        button3param.setMargins((int)(24 * dp1),(int)(0 * dp1),(int)(4 * dp1),(int)(8 * dp1));
-
-
-        /*
-        button1param.setMargins((int)(8 * dp1),(int)(0 * dp1),(int)(0 * dp1),(int)(8 * dp1));
-        button2param.setMargins((int)(8 * dp1),(int)(0 * dp1),(int)(8 * dp1),(int)(8 * dp1));
-        button3param.setMargins((int)(0 * dp1),(int)(0 * dp1),(int)(8 * dp1),(int)(8 * dp1));
-        */
 
         button1.setLayoutParams(button1param);
         button2.setLayoutParams(button2param);
