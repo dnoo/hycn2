@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Main7Activity extends AppCompatActivity {
@@ -109,42 +110,62 @@ public class Main7Activity extends AppCompatActivity {
         tv6.setText(globals.mapFriendsProfile.get("age"));
         tv7.setText(globals.mapFriendsProfile.get("comment"));
 
-        //趣味取り出し
+        //趣味取り出し＆マッチング
         try{
-            JSONObject JSONHobby = new JSONObject(globals.mapFriendsProfile.get("hobby").toString());
+            JSONObject JSONHobbyMine   = new JSONObject(globals.mapMyProfile.get("hobby").toString());
+            JSONObject JSONHobbyFriend = new JSONObject(globals.mapFriendsProfile.get("hobby").toString());
+            Map <String,String> MyHobby = new LinkedHashMap<String, String>();
+            Map <String,String> FriendHobby = new LinkedHashMap<String, String>();
             // Log.d("JSONHobby",JSONHobby.toString(2));
-            Iterator<String> keys = JSONHobby.keys();
-            int count = 0;
+            Iterator<String> keys = JSONHobbyMine.keys();
             while(keys.hasNext()){
                 String key = keys.next();
-                String value = JSONHobby.getString(key);
+                String value = JSONHobbyMine.getString(key);
+                MyHobby.put(key,value);
                 //    Log.d("Main5Activity", "キー名 = " + key + "   :   値 = " + value);
-                switch(count){
-                    case 0:
-                        tv11.setText(key);
-                        tv21.setText(value);
-                        break;
-                    case 1:
-                        tv12.setText(key);
-                        tv22.setText(value);
-                        break;
-                    case 2:
-                        tv13.setText(key);
-                        tv23.setText(value);
-                        break;
-                    case 3:
-                        tv14.setText(key);
-                        tv24.setText(value);
-                        break;
-                    case 4:
-                        tv15.setText(key);
-                        tv25.setText(value);
-                        break;
-                    default :
-                        break;
-                }
-                count++;
             }
+            keys = JSONHobbyFriend.keys();
+            while(keys.hasNext()){
+                String key = keys.next();
+                String value = JSONHobbyFriend.getString(key);
+                FriendHobby.put(key,value);
+                //    Log.d("Main5Activity", "キー名 = " + key + "   :   値 = " + value);
+            }
+            int count = 0;
+            for (Map.Entry<String , String> friendHobbyMap : FriendHobby.entrySet()) {
+                String key = friendHobbyMap.getKey();
+                String value = friendHobbyMap.getValue();
+                Log.d("map","(key)"+key+"(Value)"+value);
+                if(MyHobby.containsKey(key)) {
+                    switch(count){
+                        case 0:
+                            tv11.setText(key);
+                            tv21.setText(value);
+                            break;
+                        case 1:
+                            tv12.setText(key);
+                            tv22.setText(value);
+                            break;
+                        case 2:
+                            tv13.setText(key);
+                            tv23.setText(value);
+                            break;
+                        case 3:
+                            tv14.setText(key);
+                            tv24.setText(value);
+                            break;
+                        case 4:
+                            tv15.setText(key);
+                            tv25.setText(value);
+                            break;
+                        default :
+                            break;
+                    }
+                    count++;
+                }
+            }
+
+
         } catch (JSONException e){
 
         }
