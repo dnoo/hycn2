@@ -74,6 +74,7 @@ public class Main5Activity extends AppCompatActivity {
             return ;
         }
         setContentView(R.layout.activity_main5);
+        globals.IsBefriend=false;
         //userProfile読み込みここまで
 
         //紐付け

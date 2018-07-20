@@ -63,7 +63,7 @@ public class Main7Activity extends AppCompatActivity {
         }else {
                Log.d("mapFriendsProfile", "Error matMyProfile is Empty");
             // Go to MainActivity
-            startActivity(new Intent(Main7Activity.this, Main5Activity.class));
+            startActivity(new Intent(Main7Activity.this, Main7Activity.class));
             finish();
             return ;
         }

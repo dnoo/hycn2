@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -39,6 +40,7 @@ public class globalsClass extends Application{
     public Map<String, String> mapMyFriends = new LinkedHashMap<String, String>();//userの友達リスト
     public Map<String, String> mapFriendsProfile = new LinkedHashMap<String, String>();//userのプロフィール
     public Boolean IsDataRead;
+    public Boolean IsBefriend;
 
 
     //全部初期化するメソッド
@@ -79,11 +81,11 @@ public class globalsClass extends Application{
                     }
 
                     //mapの確認
-                  //  for (Map.Entry<String , String> myDataMap : mapFriendData.entrySet()) {
-                               //Log.d("map","(key)"+myDataMap.getKey()+"(Value)"+myDataMap.getValue());
-                  //  }
+                    for (Map.Entry<String , String> myDataMap : mapFriendData.entrySet()) {
+                               Log.d("map","(key)"+myDataMap.getKey()+"(Value)"+myDataMap.getValue());
+                    }
                     mapFriendsProfile = mapFriendData;//グローバル変数に代入
-
+                    Log.d("getFriendProfile","get!");
                 }
 
                 @Override
@@ -96,6 +98,73 @@ public class globalsClass extends Application{
             Log.d("getFriendProfile","Error"+"friendID is null!" );
         }
     }
+
+    //友達に同士になる
+    //フレンドのプロフィール情報を取得する
+    public void befriend(){
+        if(friendID!=null){
+            DatabaseReference userDataRef = FirebaseDatabase.getInstance().getReference("user-data").child( friendID );
+            Log.d("user-data:friendID:", "path::"+userDataRef.toString() );
+            userDataRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //HashMapクラスのオブジェクトを生成
+                    Map<String, String> mapFriendData = new LinkedHashMap<String, String>();
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        //Log.d("instance","(Key)"+data.getKey().toString()+":(Value)"+data.getValue().toString());
+                        mapFriendData.put(data.getKey(),data.getValue().toString());
+                    }
+
+                    //mapの確認
+                    for (Map.Entry<String , String> myDataMap : mapFriendData.entrySet()) {
+                        Log.d("map","(key)"+myDataMap.getKey()+"(Value)"+myDataMap.getValue());
+                    }
+                    mapFriendsProfile = mapFriendData;//グローバル変数に代入
+                    Log.d("getFriendProfile","get!");
+                    Log.d("befriend","start");
+                    if(friendID!=null&&userID!=null){
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference friendsRef = database.getReference("user-friends");
+                        //まずは相手のフレンドリストに自分を追加する．
+                        //  アップロード用のキーとバリュー
+                        HashMap<String, Object> childUpdatesFriendList = new HashMap<>();
+                        childUpdatesFriendList.put(userID,mapMyProfile.get("name"));
+                        //mapの確認
+                        for (Map.Entry<String , Object> myProfileMap : childUpdatesFriendList.entrySet()) {
+                            Log.d("setMap",myProfileMap.getKey()+":"+myProfileMap.getValue());
+                        }
+                        //相手のフレンドリストに自分を追加
+                        Log.d("befriend","path:"+friendsRef.child(friendID).toString());
+                        friendsRef.child(friendID).updateChildren(childUpdatesFriendList);
+                        childUpdatesFriendList.clear();
+                        //次に自分のフレンドリストに相手を追加する
+
+                        childUpdatesFriendList.put(friendID,mapFriendsProfile.get("name"));
+                        //mapの確認
+                        for (Map.Entry<String , Object> myProfileMap : childUpdatesFriendList.entrySet()) {
+                                   Log.d("setMap",myProfileMap.getKey()+":"+myProfileMap.getValue());
+                        }
+                        //自分のフレンドリストに相手を追加
+                        Log.d("befriend","path:"+friendsRef.child(userID).toString());
+                        friendsRef.child(userID).updateChildren(childUpdatesFriendList);
+                        childUpdatesFriendList.clear();
+                        IsBefriend  = false;
+                    }else{
+                        Log.d("Error_befriend","friendID"+friendID+",userID"+userID);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }else{
+            Log.d("getFriendProfile","Error"+"friendID is null!" );
+        }
+    }
+
 
     //メソッド
     public void updateUI(FirebaseUser user){
