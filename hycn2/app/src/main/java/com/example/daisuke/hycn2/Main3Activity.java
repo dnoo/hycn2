@@ -74,24 +74,7 @@ public class Main3Activity extends AppCompatActivity {
         //追加ここまで
     }
 
-    @Override
-    public void onStart(){
-        super.onStart();
-        Log.d("Main3Activity","onStart");
-        if(globals.IsBefriend==true){
-            if(!globals.mapFriendsProfile.isEmpty()){
-                Log.d("mapFriendsProfile",globals.mapMyProfile.toString());
-                //仲良くする
-                globals.befriend();
-            }else {
-                Log.d("mapFriendsProfile", "mapFriendsProfile is Empty");
-                // Go to MainActivity
-                startActivity(new Intent(Main3Activity.this, Main3Activity.class));
-                finish();
-                return ;
-            }
-        }
-    }
+
 
     public void changescreen00(View view) {
         //TextView tv = findViewById(R.id.mytext1);

@@ -40,7 +40,7 @@ public class globalsClass extends Application{
     public Map<String, String> mapMyFriends = new LinkedHashMap<String, String>();//userの友達リスト
     public Map<String, String> mapFriendsProfile = new LinkedHashMap<String, String>();//userのプロフィール
     public Boolean IsDataRead;
-    public Boolean IsBefriend;
+
 
 
     //全部初期化するメソッド
@@ -148,7 +148,7 @@ public class globalsClass extends Application{
                         Log.d("befriend","path:"+friendsRef.child(userID).toString());
                         friendsRef.child(userID).updateChildren(childUpdatesFriendList);
                         childUpdatesFriendList.clear();
-                        IsBefriend  = false;
+
                     }else{
                         Log.d("Error_befriend","friendID"+friendID+",userID"+userID);
                     }
